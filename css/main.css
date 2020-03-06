@@ -1,0 +1,20 @@
+#koala {
+    width: 100px;
+    height:auto;
+    display: block;
+    margin: auto;
+}
+
+button {
+    height: 50px;
+    width: 200px;
+    background-color: coral;
+}
+
+#buttons {
+    padding-top: 100px;   
+}
+
+.player_button:hover {
+    border: 2px solid darkgray;
+}

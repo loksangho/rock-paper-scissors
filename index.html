@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>'Rock Paper Scissors' (Downunder edition)</title>
+    <script>
+        function computerPlay() {
+            let randVar = Math.floor(Math.random() * 3);
+            switch (randVar) {
+                case 0:
+                    return 'Rock';
+                    break;
+                case 1:
+                    return 'Paper';
+                    break;
+                default:
+                    return 'Scissors';
+                    break;
+            }
+        }
+
+        function playRound(playerSelection, computerSelection) {
+            if (playerSelection.toLowerCase() == 'rock') {
+                if (computerSelection == 'Rock') {
+                    return {
+                        playerScoreAdd: 0,
+                        computerScoreAdd: 0,
+                        message: 'Nobody wins, both selected Rock'
+                    };
+                } else if (computerSelection == 'Paper') {
+                    return {
+                        playerScoreAdd: 0,
+                        computerScoreAdd: 1,
+                        message: 'You Lose! Paper beats Rock'
+                    };
+                } else {
+                    return {
+                        playerScoreAdd: 1,
+                        computerScoreAdd: 0,
+                        message: 'You Win! Rock beats Scissors'
+                    };
+                }
+            } else if (playerSelection.toLowerCase() == 'paper') {
+                if (computerSelection == 'Rock') {
+                    return {
+                        playerScoreAdd: 1,
+                        computerScoreAdd: 0,
+                        message: 'You Win! Paper beats Rock'
+                    };
+                } else if (computerSelection == 'Paper') {
+                    return {
+                        playerScoreAdd: 0,
+                        computerScoreAdd: 0,
+                        message: 'Nobody wins, both selected Paper'
+                    };
+                } else {
+                    return {
+                        playerScoreAdd: 0,
+                        computerScoreAdd: 1,
+                        message: 'You Lose! Scissors beats Paper'
+                    };
+                }
+            } else if (playerSelection.toLowerCase() == 'scissors') {
+                if (computerSelection == 'Rock') {
+                    return {
+                        playerScoreAdd: 0,
+                        computerScoreAdd: 1,
+                        message: 'You Lose! Rock beats Scissors'
+                    };
+                } else if (computerSelection == 'Paper') {
+                    return {
+                        playerScoreAdd: 1,
+                        computerScoreAdd: 0,
+                        message: 'You Win! Scissors beats Paper'
+                    };
+                } else {
+                    return {
+                        playerScoreAdd: 0,
+                        computerScoreAdd: 0,
+                        message: 'Nobody wins, both selected Scissors'
+                    };
+                }
+            } else {
+                return {
+                    playerScoreAdd: -1,
+                    computerScoreAdd: -1,
+                    message: 'Please enter Rock, Paper, or Scissors'
+                };
+            }
+        }
+
+
+        function game() {
+            let playerScore = 0;
+            let computerScore = 0;
+            for (let i = 0; i < 5; i++) {
+                let result;
+                do {
+                    let playerSelection = prompt("Please Enter Rock, Paper, or Scissors (Round " + (i + 1) + "/5):");
+                    result = playRound(playerSelection, computerPlay());
+                } while (result.playerScoreAdd == -1);
+                playerScore += result.playerScoreAdd;
+                computerScore += result.computerScoreAdd;
+                console.log(result.message);
+            }
+
+            if (playerScore > computerScore) {
+                console.log("You win!");
+            } else if (playerScore == computerScore) {
+                console.log("The scores are even!");
+            } else {
+                console.log("You lose!");
+            }
+        }
+
+        //game();
+
+        let playerScore = 0;
+        let computerScore = 0;
+        let gameStart = false;
+
+        function makeSelection(selection) {
+            if (gameStart == false) {
+                return;
+            }
+            let result;
+            let computerSelection = computerPlay();
+            result = playRound(selection, computerSelection);
+            playerScore += result.playerScoreAdd;
+            computerScore += result.computerScoreAdd;
+            document.getElementById("player_score").innerHTML = playerScore;
+            document.getElementById("computer_score").innerHTML = computerScore;
+
+            if (playerScore >= 5) {
+                document.getElementById("win_or_lose").style.display = 'inherit';
+                document.getElementById("win_or_lose").style.color = 'green';
+                document.getElementById("win_or_lose").innerHTML = "You win!";
+                gameStart = false;
+            }
+            if (computerScore >= 5) {
+                document.getElementById("win_or_lose").style.display = 'inherit';
+                document.getElementById("win_or_lose").style.color = 'red';
+                document.getElementById("win_or_lose").innerHTML = "You lose!";
+                gameStart = false;
+            }
+
+            if (result.playerScoreAdd == 1) {
+                if (selection == 'scissors') {
+                    document.getElementById("dingo_wins").style.display = 'inherit';
+                    document.getElementById("boomerang_wins").style.display = 'none';
+                    document.getElementById("baby_wins").style.display = 'none';
+                    document.getElementById("even_game").style.display = 'none';
+                    document.getElementById("game_message").innerHTML = 'Your dingo wins? You win this round!';
+                    return;
+                }
+                if (selection == 'rock') {
+                    document.getElementById("dingo_wins").style.display = 'none';
+                    document.getElementById("boomerang_wins").style.display = 'inherit';
+                    document.getElementById("baby_wins").style.display = 'none';
+                    document.getElementById("even_game").style.display = 'none';
+                    document.getElementById("game_message").innerHTML = 'Your boomerang beats the computer\'s dingo? You win this round!';
+
+                    return;
+                }
+                if (selection == 'paper') {
+                    document.getElementById("dingo_wins").style.display = 'none';
+                    document.getElementById("boomerang_wins").style.display = 'none';
+                    document.getElementById("baby_wins").style.display = 'inherit';
+                    document.getElementById("even_game").style.display = 'none';
+                    document.getElementById("game_message").innerHTML = 'Your baby destroys the computer\'s boomerang? You win this round!';
+                    return;
+                }
+
+            } else if (result.computerScoreAdd == 1) {
+                if (computerSelection == 'Scissors') {
+                    document.getElementById("dingo_wins").style.display = 'inherit';
+                    document.getElementById("boomerang_wins").style.display = 'none';
+                    document.getElementById("baby_wins").style.display = 'none';
+                    document.getElementById("even_game").style.display = 'none';
+                    document.getElementById("game_message").innerHTML = 'The computer\'s dingo wins? You lose this round!';
+                    return;
+                }
+                if (computerSelection == 'Rock') {
+                    document.getElementById("dingo_wins").style.display = 'none';
+                    document.getElementById("boomerang_wins").style.display = 'inherit';
+                    document.getElementById("baby_wins").style.display = 'none';
+                    document.getElementById("even_game").style.display = 'none';
+                    document.getElementById("game_message").innerHTML = 'The computer\'s boomerang beats your dingo? You lose this round!';
+                    return;
+                }
+                if (computerSelection == 'Paper') {
+                    document.getElementById("dingo_wins").style.display = 'none';
+                    document.getElementById("boomerang_wins").style.display = 'none';
+                    document.getElementById("baby_wins").style.display = 'inherit';
+                    document.getElementById("even_game").style.display = 'none';
+                    document.getElementById("game_message").innerHTML = 'The computer\'s baby destroys your boomerang? You lose this round!';
+                    return;
+                }
+            } else {
+                document.getElementById("even_game").style.display = 'inherit';
+                document.getElementById("dingo_wins").style.display = 'none';
+                document.getElementById("boomerang_wins").style.display = 'none';
+                document.getElementById("baby_wins").style.display = 'none';
+                document.getElementById("game_message").innerHTML = 'Both you and the computer used the same move. This round\'s even!';
+                return;
+            }
+        }
+
+        function startGame() {
+            console.log("here");
+            if (gameStart == false) {
+                gameStart = true;
+                playerScore = 0;
+                computerScore = 0;
+                document.getElementById("scores").style.display = 'inherit';
+                document.getElementById("win_or_lose").style.display = 'none';
+                document.getElementById("player_score").innerHTML = playerScore;
+                document.getElementById("computer_score").innerHTML = computerScore;
+                document.getElementById("buttons").style.display = 'inherit';
+            }
+        }
+
+        function stopGame() {
+            gameStart = false;
+            document.getElementById("scores").style.display = 'none';
+            document.getElementById("win_or_lose").style.display = 'none';
+            document.getElementById("buttons").style.display = 'none';
+            document.getElementById("even_game").style.display = 'none';
+            document.getElementById("dingo_wins").style.display = 'none';
+            document.getElementById("boomerang_wins").style.display = 'none';
+            document.getElementById("baby_wins").style.display = 'none';
+            document.getElementById("game_message").innerHTML = '';
+        }
+
+    </script>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+
+<body>
+
+    <img id="koala" src="images/koala-162140_1280.png">
+
+    <center>
+        <h1>
+            Rock, Paper, Scissors (Downunder Edition)
+        </h1>
+
+        <p>Let's play a game of 'Boomerang, Baby, Dingo'. It's a 'classic' Aussie game that has been kept secret in the Downunder for too long. But now you too can play! First to get a score of 5 to win.</p>
+    </center>
+
+
+    <center>
+        <button onclick="startGame();">Start</button>
+        <button onclick="stopGame();">Stop Game</button>
+    </center>
+
+    <div style="display:none;" id="buttons">
+        <center>
+            <a href="#" onclick="makeSelection('rock');"><img class="player_button" height="100" width="100" src="images/noun_Boomerang_871211.png"></a>
+            <a href="#" onclick="makeSelection('paper');"><img class="player_button" height="100" width="100" src="images/noun_Baby_3064003.png"></a>
+            <a href="#" onclick="makeSelection('scissors');"><img class="player_button" height="100" width="100" src="images/noun_dingo_954784.png"></a>
+        </center>
+    </div>
+
+    <center>
+        <div id="game_message"></div>
+        <div id="scores" style="display:none;">
+            Player Score: <span id="player_score">0</span>
+            <br>
+            Computer Score: <span id="computer_score">0</span>
+        </div>
+        <div id="win_or_lose" style="display:none;"></div>
+
+
+        <div id="dingo_wins" style="display:none; width:20%;height:0;padding-bottom:30%;position:relative;"><iframe src="https://giphy.com/embed/5xtDarkVqHvPq31eiXK" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed"></iframe></div>
+
+
+        <div id="boomerang_wins" style="display:none;width:20%;height:0;padding-bottom:30%;position:relative;"><iframe src="https://giphy.com/embed/inW6UPUJEppRK" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed"></iframe></div>
+
+
+        <div id="baby_wins" style="display:none;width:20%;height:0;padding-bottom:30%;position:relative;"><iframe src="https://giphy.com/embed/rT3TVX6G5cZ9K" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed"></iframe></div>
+
+
+        <div id="even_game" style="display:none;width:20%;height:0;padding-bottom:30%;position:relative;"><iframe src="https://giphy.com/embed/ie2FZHn3VL8Zx2wQGN" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed"></iframe></div>
+    </center>
+</body>
+
+</html>
