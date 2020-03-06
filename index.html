@@ -128,19 +128,19 @@
             result = playRound(selection, computerSelection);
             playerScore += result.playerScoreAdd;
             computerScore += result.computerScoreAdd;
-            document.getElementById("player_score").innerHTML = playerScore;
-            document.getElementById("computer_score").innerHTML = computerScore;
+            document.getElementById("player_score").textContent = playerScore;
+            document.getElementById("computer_score").textContent = computerScore;
 
             if (playerScore >= 5) {
                 document.getElementById("win_or_lose").style.display = 'inherit';
                 document.getElementById("win_or_lose").style.color = 'green';
-                document.getElementById("win_or_lose").innerHTML = "You win!";
+                document.getElementById("win_or_lose").textContent = "You win!";
                 gameStart = false;
             }
             if (computerScore >= 5) {
                 document.getElementById("win_or_lose").style.display = 'inherit';
                 document.getElementById("win_or_lose").style.color = 'red';
-                document.getElementById("win_or_lose").innerHTML = "You lose!";
+                document.getElementById("win_or_lose").textContent = "You lose!";
                 gameStart = false;
             }
 
@@ -150,7 +150,7 @@
                     document.getElementById("boomerang_wins").style.display = 'none';
                     document.getElementById("baby_wins").style.display = 'none';
                     document.getElementById("even_game").style.display = 'none';
-                    document.getElementById("game_message").innerHTML = 'Your dingo wins? You win this round!';
+                    document.getElementById("game_message").textContent = 'Your dingo wins? You win this round!';
                     return;
                 }
                 if (selection == 'rock') {
@@ -158,7 +158,7 @@
                     document.getElementById("boomerang_wins").style.display = 'inherit';
                     document.getElementById("baby_wins").style.display = 'none';
                     document.getElementById("even_game").style.display = 'none';
-                    document.getElementById("game_message").innerHTML = 'Your boomerang beats the computer\'s dingo? You win this round!';
+                    document.getElementById("game_message").textContent = 'Your boomerang beats the computer\'s dingo? You win this round!';
 
                     return;
                 }
@@ -167,7 +167,7 @@
                     document.getElementById("boomerang_wins").style.display = 'none';
                     document.getElementById("baby_wins").style.display = 'inherit';
                     document.getElementById("even_game").style.display = 'none';
-                    document.getElementById("game_message").innerHTML = 'Your baby destroys the computer\'s boomerang? You win this round!';
+                    document.getElementById("game_message").textContent = 'Your baby destroys the computer\'s boomerang? You win this round!';
                     return;
                 }
 
@@ -177,7 +177,7 @@
                     document.getElementById("boomerang_wins").style.display = 'none';
                     document.getElementById("baby_wins").style.display = 'none';
                     document.getElementById("even_game").style.display = 'none';
-                    document.getElementById("game_message").innerHTML = 'The computer\'s dingo wins? You lose this round!';
+                    document.getElementById("game_message").textContent = 'The computer\'s dingo wins? You lose this round!';
                     return;
                 }
                 if (computerSelection == 'Rock') {
@@ -185,7 +185,7 @@
                     document.getElementById("boomerang_wins").style.display = 'inherit';
                     document.getElementById("baby_wins").style.display = 'none';
                     document.getElementById("even_game").style.display = 'none';
-                    document.getElementById("game_message").innerHTML = 'The computer\'s boomerang beats your dingo? You lose this round!';
+                    document.getElementById("game_message").textContent = 'The computer\'s boomerang beats your dingo? You lose this round!';
                     return;
                 }
                 if (computerSelection == 'Paper') {
@@ -193,7 +193,7 @@
                     document.getElementById("boomerang_wins").style.display = 'none';
                     document.getElementById("baby_wins").style.display = 'inherit';
                     document.getElementById("even_game").style.display = 'none';
-                    document.getElementById("game_message").innerHTML = 'The computer\'s baby destroys your boomerang? You lose this round!';
+                    document.getElementById("game_message").textContent = 'The computer\'s baby destroys your boomerang? You lose this round!';
                     return;
                 }
             } else {
@@ -201,7 +201,7 @@
                 document.getElementById("dingo_wins").style.display = 'none';
                 document.getElementById("boomerang_wins").style.display = 'none';
                 document.getElementById("baby_wins").style.display = 'none';
-                document.getElementById("game_message").innerHTML = 'Both you and the computer used the same move. This round\'s even!';
+                document.getElementById("game_message").textContent = 'Both you and the computer used the same move. This round\'s even!';
                 return;
             }
         }
@@ -214,8 +214,8 @@
                 computerScore = 0;
                 document.getElementById("scores").style.display = 'inherit';
                 document.getElementById("win_or_lose").style.display = 'none';
-                document.getElementById("player_score").innerHTML = playerScore;
-                document.getElementById("computer_score").innerHTML = computerScore;
+                document.getElementById("player_score").textContent = playerScore;
+                document.getElementById("computer_score").textContent = computerScore;
                 document.getElementById("buttons").style.display = 'inherit';
             }
         }
@@ -229,7 +229,7 @@
             document.getElementById("dingo_wins").style.display = 'none';
             document.getElementById("boomerang_wins").style.display = 'none';
             document.getElementById("baby_wins").style.display = 'none';
-            document.getElementById("game_message").innerHTML = '';
+            document.getElementById("game_message").textContent = '';
         }
 
     </script>
