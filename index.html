@@ -231,6 +231,19 @@
             document.getElementById("baby_wins").style.display = 'none';
             document.getElementById("game_message").textContent = '';
         }
+        
+        window.addEventListener("click", function(e) {
+            if(e.target.id=="boomerang") {
+                makeSelection('rock');
+            }
+            else if(e.target.id == "baby") {
+                makeSelection('paper');
+            }
+            else if(e.target.id == "dingo") {
+                makeSelection("scissors");
+            }
+            return;            
+        });
 
     </script>
     <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -256,9 +269,9 @@
 
     <div style="display:none;" id="buttons">
         <center>
-            <a href="#" onclick="makeSelection('rock');"><img class="player_button" height="100" width="100" src="images/noun_Boomerang_871211.png"></a>
-            <a href="#" onclick="makeSelection('paper');"><img class="player_button" height="100" width="100" src="images/noun_Baby_3064003.png"></a>
-            <a href="#" onclick="makeSelection('scissors');"><img class="player_button" height="100" width="100" src="images/noun_dingo_954784.png"></a>
+            <img id="boomerang" class="player_button" height="100" width="100" src="images/noun_Boomerang_871211.png">
+            <img id="baby" class="player_button" height="100" width="100" src="images/noun_Baby_3064003.png">
+            <img id="dingo" class="player_button" height="100" width="100" src="images/noun_dingo_954784.png">
         </center>
     </div>
 
